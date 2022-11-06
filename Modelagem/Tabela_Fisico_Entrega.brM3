@@ -1,0 +1,56 @@
+/* Tabela_Fisico_Entrega: */
+
+CREATE TABLE Cliente (
+    nome VARCHAR,
+    cpf VARCHAR PRIMARY KEY,
+    e_mail VARCHAR
+);
+
+CREATE TABLE passagem (
+    idDestino INTEGER PRIMARY KEY,
+    data_Viagem DATE,
+    data_Retorno DATE,
+    LocalOrigem VARCHAR,
+    LocalDestino VARCHAR,
+    valor DECIMAL,
+    numerosPassageiros DATE,
+    tipoPassagem VARCHAR,
+    fk_Cliente_cpf VARCHAR,
+    fk_promocoes_ideSolicitacao INTEGER
+);
+
+CREATE TABLE contato_reclamacao (
+    e_mail VARCHAR PRIMARY KEY,
+    Assunto TEXT,
+    fk_Cliente_cpf VARCHAR
+);
+
+CREATE TABLE promocoes (
+    ideSolicitacao INTEGER PRIMARY KEY,
+    e_mail VARCHAR,
+    nome VARCHAR,
+    destinoDesejado VARCHAR,
+    qtdDias INTEGER,
+    valor DECIMAL,
+    fk_Cliente_cpf VARCHAR
+);
+ 
+ALTER TABLE passagem ADD CONSTRAINT FK_passagem_2
+    FOREIGN KEY (fk_Cliente_cpf)
+    REFERENCES Cliente (cpf)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE passagem ADD CONSTRAINT FK_passagem_3
+    FOREIGN KEY (fk_promocoes_ideSolicitacao)
+    REFERENCES promocoes (ideSolicitacao)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE contato_reclamacao ADD CONSTRAINT FK_contato_reclamacao_2
+    FOREIGN KEY (fk_Cliente_cpf)
+    REFERENCES Cliente (cpf)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE promocoes ADD CONSTRAINT FK_promocoes_2
+    FOREIGN KEY (fk_Cliente_cpf)
+    REFERENCES Cliente (cpf)
+    ON DELETE CASCADE;
