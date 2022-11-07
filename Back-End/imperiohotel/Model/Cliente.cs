@@ -4,7 +4,7 @@ namespace imperiohotel.Model
     public class Cliente
     {
         [Key]
-        public int Id { get; set; }
+        public int IdCliente { get; set; }
 
         public string Nome { get; set; }
 

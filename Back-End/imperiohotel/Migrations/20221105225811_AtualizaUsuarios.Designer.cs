@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using viagemlr.Database;
+using imperiohotel.Database;
 
 #nullable disable
 
-namespace viagemlr.Migrations
+namespace imperiohotel.Migrations
 {
-    [DbContext(typeof(UsuarioDbContext))]
+    [DbContext(typeof(ClienteDbContext))]
     [Migration("20221105225811_AtualizaUsuarios")]
-    partial class AtualizaUsuarios
+    partial class AtualizaClientes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,35 +21,31 @@ namespace viagemlr.Migrations
                 .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("viagemlr.Model.Usuario", b =>
+            modelBuilder.Entity("imperiohotel.Model.Cliente", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IdCliente")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    b.Property<DateTime>("DataNascimento")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("data_nascimento");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("email");
+                        .HasColumnName("IdCliente");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("nome");
 
-                    b.Property<string>("Telefone")
+                    b.Property<string>("cpf")
                         .IsRequired()
                         .HasColumnType("longtext")
-                        .HasColumnName("telefone");
+                        .HasColumnName("cpf");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("email");
 
-                    b.ToTable("usuario", (string)null);
+                    b.HasKey("IdCliente");
+
+                    b.ToTable("clientes", (string)null);
                 });
 #pragma warning restore 612, 618
         }
